@@ -7,7 +7,7 @@ print("zoom in and out for a better view for the Board"\
 from time import sleep
 from visual import *
 scene.width,scene.height = 1000,1000
-
+## I use a stack method to make the program faster
 scene.title = "Pong!"
 court = box(pos=(0,0,-5),size=(5,10,0),color=color.white)
 Gamelabel = label(pos=(0,6,-5),text = "Right Arrow move right; Left Arrow move left",color = color.red)
@@ -22,8 +22,7 @@ class Pong:
          x,y,z,length,width,deepth,color
         self.pong,self.pong.velocity= box(pos=(self.x,self.y,self.z),size=\
         (self.width,self.length,self.deepth),color=self.color),vector(1,0,0)
-        # get program to incriment this to move object
-    # I might have to change this this is the fixed value we might have to change it because it will be moveing
+ 
     def get_X(self):
         return self.pong.pos.x
     def get_Y(self):
@@ -95,14 +94,15 @@ class ball:
         self.ball.velocity = vector
     def ball_update(self,deltat,ball_crash=0):
         # enter a small number like 0.02
-        """ This will serve as an update for the position use a while loop"""
+        """ This will serve as an update for the position use a while loop
+            Updates the ball automaticaly"""
         speed_radius = deltat/self.radius ## I want the size to affect the speed
         if self.ball.pos.x >= 5/2 or self.ball.pos.x <= -5/2:
             self.ball.velocity.x = -self.ball.velocity.x
         if self.ball.pos.y >= 5 or self.ball.pos.y <-5:
             self.ball.velocity.y  = -self.ball.velocity.y
         if ball_crash != 0:
-            # this is so the balls dont pass through each other
+            """Used for colision function below"""
             self.ball.velocity.y= -self.ball.velocity.y
 
         self.ball.pos = self.ball.pos + self.ball.velocity * speed_radius
@@ -124,11 +124,12 @@ def pong_and_crash(pong,ball):
      >= float(pong.Upper_leftx()) \
        and float(pong.Upper_lefty()) >= float(ball.getPos_y()) and float(ball.getPos_y())\
         >=float(pong.Lower_lefty()):
-        ball.ball_update(0.001,1)
+        ball.ball_update(0.001,1) ## Right Here
         n = 1
     else:
         n = 0
     return n
+    ### one and zero for acivating the while loop
 
 value =[vector(-7,-5,0),vector(0.5,3,0),vector(0.5,-3,0),vector(7,-10,0),vector(10,-10,0)]
 white,black,orange,yellow,green,red,blue,magenta\
