@@ -1,5 +1,5 @@
 ### licks to download Vpython ###
-## Us this for the other programs ##
+## Use this for the other programs and this one if need be ##
 windows 
 https://learning.semo.edu/mod/url/view.php?id=1357459
 Mac 
